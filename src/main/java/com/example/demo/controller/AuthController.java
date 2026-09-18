@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import com.example.demo.service.AuthService;
 import com.example.demo.entity.AuthRequest;
 import com.example.demo.entity.AuthResponse;
+import com.example.demo.entity.RefreshAccessTokenRequest;
 
 @RestController
 @RequiredArgsConstructor 
@@ -20,5 +21,10 @@ public class AuthController{
     @PostMapping("/token")
     public AuthResponse login(@RequestBody AuthRequest authRequest){
         return authService.authenticate(authRequest);
+    }
+
+    @PostMapping("/token/refresh")
+    public AuthResponse refresh(@RequestBody RefreshAccessTokenRequest request){
+        return authService.refreshAccessToken(request.getRefreshToken());
     }
 }

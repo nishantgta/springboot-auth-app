@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import java.time.Instant;
 // import java.util.UUID;
 
-import org.hibernate.annotations.CreationTimestamp;
+//import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.Entity;
 // import jakarta.persistence.GeneratedValue;
@@ -29,7 +29,7 @@ public class RefreshTokenEntity {
     private String username;
     private String refreshToken;
 
-    @CreationTimestamp 
+    //@CreationTimestamp 
     private Instant expiry_at;
 
     @Builder.Default

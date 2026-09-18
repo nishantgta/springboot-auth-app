@@ -23,13 +23,17 @@ public class JwtTokenService{
     private final JwtDecoder decoder;
 
     public String generateToken(Authentication authentication){
+        return generateTokenForUsername(authentication.getName());
+    }
+
+    public String generateTokenForUsername(String username){
         Instant now = Instant.now();
         String scope = "ROLE_ADMIN";
         JwtClaimsSet claims = JwtClaimsSet.builder()
                                 .issuer("self")
                                 .issuedAt(now)
                                 .expiresAt(now.plus(1, ChronoUnit.HOURS))
-                                .subject(authentication.getName())
+                                .subject(username)
                                 .claim("scope", scope)
                                 .build();
         var encoderParameters = JwtEncoderParameters.from(JwsHeader.with(MacAlgorithm.HS256).build(),claims);
